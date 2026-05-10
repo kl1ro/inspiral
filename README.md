@@ -1,7 +1,6 @@
 # Inspiral
 
 A custom graphics engine made for inspired individuals.
-Made in C++.
 
 ![screenshot](screenshots/f1.png)
 ![screenshot](screenshots/chess.png)
