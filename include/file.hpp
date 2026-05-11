@@ -1,4 +1,5 @@
 #pragma once
+#include "material.hpp"
 #include "mesh.hpp"
 #include "opengl-helpers.hpp"
 #include "scene.hpp"
@@ -12,24 +13,45 @@
 #include <sstream>
 #include <string>
 
-std::string readFile(const std::string& path);
+struct TinyObj {
+  tinyobj::attrib_t attrib;
+  std::vector<tinyobj::shape_t> shapes;
+  std::vector<tinyobj::material_t> tinyMaterials;
+  std::string warn, err;
+  std::string baseDir;
+  bool success;
+};
 
+struct TinyGltf {
+  tinygltf::Model model;
+  tinygltf::TinyGLTF loader;
+  std::string err, warn;
+  bool success;
+};
+
+std::string readFile(const std::string& path);
 std::string openFileDialog(const std::string& filter = "*");
 
-void loadObj(const std::string& path);
+void importObj(const std::string& path);
 
-void loadMaterials(
-  const std::string baseDir,
-  const std::vector<tinyobj::material_t>& tinyMaterials
-);
+static TinyObj loadTinyObj(const std::string& path);
+static Object tinyObjToObject(const TinyObj& tinyObj);
+static Mesh tinyObjToMesh(const TinyObj& tinyObj);
+static std::vector<Submesh>
+shapeToSubmeshes(const tinyobj::shape_t& shape, const tinyobj::attrib_t& attrib);
+static std::vector<Material> tinyObjToMaterials(const TinyObj& tinyObj);
 
-void loadMesh(const std::vector<tinyobj::shape_t>& shapes, const tinyobj::attrib_t& attrib);
+void importGltf(const std::string& path);
+void openGltf(const std::string& path);
 
-static GLuint loadGLTFTexture(const tinygltf::Model& model, int textureIndex);
-static int loadGLTFMaterials(const tinygltf::Model& model);
+static TinyGltf loadTinyGltf(const std::string& path);
+static Scene tinyGltfToScene(const TinyGltf& tinyGltf);
+static std::vector<Object> tinyGltfToObjects(const TinyGltf& tinyGltf);
+static std::vector<Light> tinyGltfToLights(const TinyGltf& tinyGltf);
+static Object tinyGltfToObject(const TinyGltf& tinyGltf, int nodeIndex);
+static Mesh tinyGltfToMesh(const TinyGltf& tinyGltf, int meshIndex);
+static Transform nodeToTransform(const tinygltf::Node& node);
+static std::vector<Material> tinyGltfToMaterials(const TinyGltf& tinyGltf);
+
 static const float* getBufferData(const tinygltf::Model& model, int accessorIndex);
 static const unsigned short* getIndexData(const tinygltf::Model& model, int accessorIndex);
-static Mesh loadGLTFMesh(const tinygltf::Model& model, int meshIndex, int materialOffset);
-static Transform nodeToTransform(const tinygltf::Node& node);
-static Object loadNode(const tinygltf::Model& model, int nodeIndex, int materialOffset);
-Scene loadScene(const std::string& path);

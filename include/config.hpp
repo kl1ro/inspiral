@@ -35,4 +35,4 @@ struct Config {
   TriangleConfig triangle;
 };
 
-Config& getConfig(std::string path = "config.json");
+void loadGlobalConfig(std::string path = "config.json");

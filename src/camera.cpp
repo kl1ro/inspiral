@@ -60,7 +60,7 @@ void setViewModeToRelative() {
   ImGui::GetIO().ConfigFlags &= ~ImGuiConfigFlags_NoMouse;
 }
 
-void transitionDisplayMode() {
+void advanceDisplayMode() {
   DisplayMode& mode = Globals::displayMode;
 
   switch (mode) {

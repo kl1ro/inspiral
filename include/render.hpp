@@ -7,6 +7,8 @@
 void render();
 void drawScene(const Scene& scene);
 void drawObject(const Object& object, glm::mat4 parentMatrix = glm::mat4(1.0f));
+void drawAABB(const AABB& aabb);
+Submesh makeBoxSubmesh(glm::vec3 min, glm::vec3 max, float eps = 0.0f);
 void drawMesh(const Mesh& mesh);
 void drawSubmesh(const Submesh& submesh);
 void drawSubmeshWithContext(const Submesh& submesh);

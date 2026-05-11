@@ -97,7 +97,7 @@ void drawFilePopover() {
     if (ImGui::MenuItem("Open")) {
       std::string path = openFileDialog();
       if (!path.empty())
-        Globals::scene = loadScene(path);
+        openGltf(path);
     }
 
     ImGui::MenuItem("Save");
@@ -108,7 +108,7 @@ void drawFilePopover() {
         std::string path = openFileDialog("*.obj");
 
         if (!path.empty())
-          loadObj(path);
+          importObj(path);
       }
 
       ImGui::EndMenu();

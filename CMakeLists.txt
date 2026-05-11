@@ -92,6 +92,7 @@ target_include_directories(imgui PUBLIC
 target_link_libraries(imgui PUBLIC glfw OpenGL::GL)
 
 add_executable(engine
+	src/aabb.cpp
 	src/camera.cpp
 	src/config.cpp
 	src/entry.cpp
@@ -100,7 +101,9 @@ add_executable(engine
 	src/keyboard.cpp
 	src/mouse.cpp
 	src/opengl-helpers.cpp
+	src/ray.cpp
 	src/render.cpp
+	src/scene.cpp
 	src/shader.cpp
 	src/time.cpp
 	src/tiny.cpp

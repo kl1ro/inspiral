@@ -1,4 +1,6 @@
 #pragma once
+#include "ray.hpp"
+
 #include <GLFW/glfw3.h>
 
 struct Mouse {
@@ -17,3 +19,4 @@ struct Mouse {
 void moveMouse(GLFWwindow*, double xpos, double ypos);
 
 void onCursorPos(GLFWwindow* window, double xpos, double ypos);
+void onMouseButton(GLFWwindow* window, int button, int action, int mods);

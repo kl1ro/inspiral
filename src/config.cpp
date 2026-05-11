@@ -2,10 +2,11 @@
 
 #include "globals.hpp"
 
-Config& getConfig(std::string path) {
+void loadGlobalConfig(std::string path) {
   Config& config = Globals::config;
+
   if (config.window.title.length())
-    return config;
+    return;
 
   std::ifstream file(path);
   nlohmann::json j;
@@ -21,6 +22,4 @@ Config& getConfig(std::string path) {
     j["triangle"]["shaders"].value("fragment", "shaders/fragment.glsl");
 
   config.mesh = j.value("mesh", "cube.obj");
-
-  return config;
 }

@@ -39,7 +39,7 @@ void onKeyPress(GLFWwindow*, int key, int, int action, int mods) {
     return toggleViewMode();
 
   if (altHeld && key == GLFW_KEY_D)
-    return transitionDisplayMode();
+    return advanceDisplayMode();
 
   if (key == GLFW_KEY_ESCAPE)
     return glfwSetWindowShouldClose(Globals::window, true);

@@ -2,6 +2,7 @@
 
 uniform sampler2D tex;
 uniform int displayMode;
+uniform bool useTexture;
 uniform vec4 color;
 uniform vec3 viewPos;
 
@@ -53,7 +54,7 @@ void main() {
     return;
   }
 
-  vec4 baseColor = texture(tex, TexCoord);
+  vec4 baseColor = useTexture ? texture(tex, TexCoord) : color;
 
   if (displayMode == MODE_TEXTURED) {
     FragColor = baseColor;

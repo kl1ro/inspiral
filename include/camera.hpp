@@ -27,4 +27,4 @@ void toggleViewMode();
 void setViewModeToAbsolute();
 void setViewModeToRelative();
 
-void transitionDisplayMode();
+void advanceDisplayMode();

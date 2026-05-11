@@ -9,3 +9,5 @@ struct Scene {
 };
 
 const int MAX_LIGHTS_NUM = 32;
+
+Scene mergeScenes(const Scene& a, const Scene& b);
